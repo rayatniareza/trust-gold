@@ -18,10 +18,11 @@
           ورود
         </button>
       </li>
-        <span class="ml-2 text-light" >|</span>
-        <button class="btn btn-sm btn-light disabled">
+      <li class="nav-item">
+        <span class="ml-2 text-light align-middle">|</span>
+        <button class="btn btn-sm btn-dark">
           <font-awesome-icon class="icon mx-1" icon="shopping-bag" />
-          <span class="badge badge-light mx-1" v-if="count > 0">{{
+          <span class="badge badge-dark mx-1" v-if="count > 0">{{
             count
           }}</span>
         </button>
