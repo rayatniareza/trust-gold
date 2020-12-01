@@ -1,20 +1,23 @@
 <template>
   <div id="app" class="rtl">
-    <navbar />
+    <!-- <navbar />
 
-    <product-list :products="products" />
+    <product-list :products="products" /> -->
+    <product-main-card-item :product="products[0]" :remain="5" />
   </div>
 </template>
 
 <script>
-import ProductList from "./components/ProductList";
-import Navbar from "./components/Navbar";
+// import ProductList from "./components/ProductList";
+// import Navbar from "./components/Navbar";
+import ProductMainCardItem from "./components/ProductMainCardItem";
 
 export default {
   name: "App",
   components: {
-    ProductList,
-    Navbar,
+    // ProductList,
+    // Navbar,
+    ProductMainCardItem,
   },
   data() {
     return {
