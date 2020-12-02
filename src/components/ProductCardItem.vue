@@ -1,33 +1,52 @@
 <template>
-  <div class="row container">
-    <div class="col-sm-4 text-right">
-      <span class="h5">{{ product.name }}</span>
+  <div class="row p-2">
+    <div class="col-sm-6 text-right d-flex">
+      <span class="align-self-center">{{ product.name }}</span>
     </div>
-    <div class="col-sm-4 text-center">
-      <div :class="changeColor">
-        {{ product.price | currencyFormater | toPersian }}
-      </div>
-      <div class="text-muted">
-        <span>{{ changeInCurrency | currencyFormater | toPersian }}</span>
-        <span class="mx-1">({{ changeInPercent | toPersian }}%)</span>
-      </div>
-    </div>
-    <div class="col-sm-4 text-left">
-      <div class="d-flex">
-        <button @click="increaseQty">+</button>
-        <div class="text-center">
-          {{ qty | toPersian }}
+    <div class="col-sm-auto d-flex align-items-center text-center">
+      <div class="container">
+        <div :class="changeColor">
+          {{ product.price | currencyFormater | toPersian }}
         </div>
-        <button @click="decreaseQty">-</button>
+        <div class="">
+          <span>{{ changeInCurrency | currencyFormater | toPersian }}</span>
+          <span class="mx-1">({{ changeInPercent | toPersian }}%)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+      <div class="d-flex justify-content-center">
+        <button
+          class="btn btn-sm btn-success rounded-circle"
+          @click="increaseQty"
+        >
+          <font-awesome-icon icon="plus" />
+        </button>
+      </div>
+      <div class="text-center mt-1">
+        {{ qty | toPersian }}
+      </div>
+      <div class="d-flex justify-content-center">
+        <button
+          class="btn btn-sm btn-danger rounded-circle"
+          @click="decreaseQty"
+        >
+          <font-awesome-icon icon="minus" />
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 export default {
-  name: "ProductMainCardItem",
+  name: "ProductCardItem",
   props: ["product", "remain"],
+  components: {
+    FontAwesomeIcon,
+  },
   data() {
     return {
       qty: 0,

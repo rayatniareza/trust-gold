@@ -1,23 +1,24 @@
 <template>
   <div id="app" class="rtl">
-    <!-- <navbar />
+    <!--<navbar />
 
     <product-list :products="products" /> -->
-    <product-main-card-item :product="products[0]" :remain="5" />
+    <products-card :products="products" />
+    <!-- <product-card-item :product="products[1]" :remain="10" /> -->
   </div>
 </template>
 
 <script>
 // import ProductList from "./components/ProductList";
 // import Navbar from "./components/Navbar";
-import ProductMainCardItem from "./components/ProductMainCardItem";
+import ProductsCard from "./components/ProductsCard";
 
 export default {
   name: "App",
   components: {
     // ProductList,
     // Navbar,
-    ProductMainCardItem,
+    ProductsCard,
   },
   data() {
     return {
@@ -28,13 +29,15 @@ export default {
           price: 12000000,
           changeInPercent: 0.5,
           lastClosePrice: 11800000,
+          remain: 5,
         },
         {
-          id: 0,
+          id: 1,
           name: "نیم سکه بهار آزادی",
           price: 6200000,
           changeInPercent: 0.5,
           lastClosePrice: 6300000,
+          remain: 10,
         },
       ],
     };
