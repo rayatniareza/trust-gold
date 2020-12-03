@@ -43,14 +43,12 @@
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 export default {
   name: "ProductCardItem",
-  props: ["product", "remain"],
+  props: ["product", "qty"],
   components: {
     FontAwesomeIcon,
   },
   data() {
-    return {
-      qty: 0,
-    };
+    return {};
   },
   filters: {
     rial: function (price) {
@@ -100,10 +98,11 @@ export default {
   },
   methods: {
     increaseQty: function () {
-      if (this.qty < this.remain) this.qty++;
+      if (this.qty < this.product.remain)
+        this.$parent.$emit("add", this.product);
     },
     decreaseQty: function () {
-      if (this.qty > 0) this.qty--;
+      if (this.qty > 0) this.$parent.$emit("remove", this.product);
     },
   },
 };

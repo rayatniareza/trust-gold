@@ -3,7 +3,7 @@
     <product-card-item
       class="bg-dark text-light"
       :product="currentProduct"
-      :remain="currentProduct.remain"
+      :qty="currentQty"
     />
     <div class="btn-toolbar">
       <div
@@ -28,14 +28,25 @@ import ProductCardItem from "./ProductCardItem";
 
 export default {
   name: "ProductsCard",
-  props: ["products"],
+  props: ["products", "cart"],
   components: {
     ProductCardItem,
   },
   data() {
     return {
-      currentProduct: this.products[0],
+      currentProduct: null,
     };
+  },
+  computed: {
+    currentQty: function () {
+      var index = this.cart.findIndex(
+        (item) => item.productId === this.currentProduct.id
+      );
+      if (index !== -1) {
+        return this.cart[index].qty;
+      }
+      return 0;
+    },
   },
 };
 </script>

@@ -3,7 +3,12 @@
     <!--<navbar />
 
     <product-list :products="products" /> -->
-    <products-card :products="products" />
+    <products-card
+      :products="products"
+      :cart="cart"
+      @add="addToCart"
+      @remove="removeFromCart"
+    />
     <!-- <product-card-item :product="products[1]" :remain="10" /> -->
   </div>
 </template>
@@ -22,25 +27,38 @@ export default {
   },
   data() {
     return {
-      products: [
-        {
-          id: 0,
-          name: "سکه تمام بهار (طرح قدیم)",
-          price: 12000000,
-          changeInPercent: 0.5,
-          lastClosePrice: 11800000,
-          remain: 5,
-        },
-        {
-          id: 1,
-          name: "نیم سکه بهار آزادی",
-          price: 6200000,
-          changeInPercent: 0.5,
-          lastClosePrice: 6300000,
-          remain: 10,
-        },
-      ],
+      products: null,
+      cart: [],
     };
+  },
+  methods: {
+    removeFromCart: function (product) {
+      var index = this.cart.findIndex((item) => item.productId === product.id);
+      if (index !== -1) {
+        if (this.cart[index].qty > 1) {
+          this.cart[index].qty--;
+        } else {
+          this.cart.splice(index, 1);
+        }
+      }
+    },
+    addToCart: function (product) {
+      var index = this.cart.findIndex((item) => item.productId === product.id);
+      if (index !== -1) {
+        this.cart[index].qty++;
+      } else {
+        this.cart.push({ productId: product.id, qty: 1 });
+      }
+    },
+  },
+  mounted() {
+    console.log("mounted started");
+    fetch("./data/products.json")
+      .then((response) => response.json())
+      .then((data) => {
+        this.products = data;
+        console.log(data);
+      });
   },
 };
 </script>
