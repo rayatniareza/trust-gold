@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="card p-1 m-4">
     <product-card-item
       class="bg-dark text-light"
       :product="currentProduct"
@@ -40,7 +40,7 @@ export default {
   computed: {
     currentQty: function () {
       var index = this.cart.findIndex(
-        (item) => item.productId === this.currentProduct.id
+        (item) => item.product.id === this.currentProduct.id
       );
       if (index !== -1) {
         return this.cart[index].qty;

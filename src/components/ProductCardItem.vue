@@ -1,5 +1,5 @@
 <template>
-  <div class="row p-2">
+  <div class="row">
     <div class="col-sm-6 text-right d-flex">
       <span class="align-self-center">{{ product.name }}</span>
     </div>
@@ -15,25 +15,27 @@
       </div>
     </div>
 
-    <div class="col-sm-2">
-      <div class="d-flex justify-content-center">
-        <button
-          class="btn btn-sm btn-success rounded-circle"
-          @click="increaseQty"
-        >
-          <font-awesome-icon icon="plus" />
-        </button>
-      </div>
-      <div class="text-center mt-1">
-        {{ qty | toPersian }}
-      </div>
-      <div class="d-flex justify-content-center">
-        <button
-          class="btn btn-sm btn-danger rounded-circle"
-          @click="decreaseQty"
-        >
-          <font-awesome-icon icon="minus" />
-        </button>
+    <div class="col-sm-2 p-1">
+      <div class="text-center">
+        <div class="d-inline-flex ">
+          <button
+            class="btn btn-sm btn-success rounded-circle"
+            @click="increaseQty"
+          >
+            <font-awesome-icon icon="plus" class="pt-1" />
+          </button>
+        </div>
+        <div class="d-inline-flex text-center m-1 p-1">
+          {{ qty | toPersian }}
+        </div>
+        <div class="d-inline-flex">
+          <button
+            class="btn btn-sm btn-danger rounded-circle"
+            @click="decreaseQty"
+          >
+            <font-awesome-icon icon="minus" class="pt-1"/>
+          </button>
+        </div>
       </div>
     </div>
   </div>
