@@ -13,11 +13,13 @@
     "@fortawesome/free-solid-svg-icons": "5.15.1",
     "@fortawesome/vue-fontawesome": "2.0.0",
     "@vue/cli-plugin-babel": "4.1.1",
+    "axios": "0.21.0",
     "bootstrap": "4.5.3",
     "jquery": "3.5.1",
     "popper.js": "1.16.1",
     "vue": "^2.6.11",
-    "vue-router": "3.4.9"
+    "vue-router": "3.4.9",
+    "vue-session": "1.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-eslint": "4.1.1",
