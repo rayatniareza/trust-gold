@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="rtl">
-    <router-view />
+    <!-- <router-view /> -->
+    <login/> 
   </div>
 </template>
 
@@ -8,9 +9,13 @@
 // import ProductList from "./components/ProductList";
 // import Navbar from "./components/Navbar";
 // import ProductsCard from "./components/ProductsCard";
+import Login from "./components/Login"
 
 export default {
   name: "App",
+  components: {
+    Login,
+  }
 };
 </script>
 

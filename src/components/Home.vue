@@ -2,13 +2,13 @@
   <div>
     <navbar :cart="cart" />
 
-    <!--<product-list :products="products" /> -->
     <products-card
       :products="products"
       :cart="cart"
       @add="addToCart"
       @remove="removeFromCart"
     />
+    <!--<product-list :products="products" /> -->
     <!-- <product-card-item :product="products[1]" :remain="10" /> -->
   </div>
 </template>
