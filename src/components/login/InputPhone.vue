@@ -3,23 +3,25 @@
     <h3 class="mt-4 text-center">ورود/ثبت نام</h3>
     <form class="mt-3 px-5 pb-2">
       <div class="form-group">
-        <span class="d-block pb-2 text-right">
+        <label class="d-block pb-2 text-right">
           شماره همراه خود را وارد کنید
-        </span>
+        </label>
         <input
           class="form-control"
+          :class="valid"
           type="text"
           placeholder="شماره همراه"
           v-model="phone"
         />
-        <!-- @keyup.enter="login()" -->
+        <!-- <div class="valid-feedback d-block text-right">
+          {{error}}
+        </div> -->
       </div>
       <div class="form-group text-muted text-center">
         <button
           type="button"
           class="btn btn-primary px-5 mt-3 mb-2"
-          @click.stop="login()"
-        >
+          @click.stop="login()">
           ورود
         </button>
         <p class="mt-1">کد فعالسازی به شماره شما ارسال خواهد شد</p>
@@ -34,18 +36,24 @@ export default {
   data() {
     return {
       phone: "",
+      valid: ""
     };
   },
+  computed: {},
+  watch:{
+    phone(){
+      this.valid = this.validate( this.phone ) ? "is-valid": "";
+    }
+  },
   methods: {
-    isValid(phone) {
+    validate(phone) {
       var regex = /^(09)\d{9}/;
       return regex.test(phone);
     },
     login() {
-      console.log(this.phone);
       // validate phone number, false: show validate message, true:
-      if (!this.isValid(this.phone)) {
-        return;
+      if ( !this.validate(this.phone) ) {
+        this.valid = "is-invalid";
       }
       // disable button, show wait, send phone to server
       // onResponse, dismiss wait, go to next page
