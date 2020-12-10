@@ -1,16 +1,16 @@
 <template>
   <div class="container border rounded">
-    <input-number />
+    <input-phone />
   </div>
 </template>
 
 <script>
-import InputNumber from "InputNumber";
+import InputPhone from "./InputPhone";
 
 export default {
   name: "Login",
   components: {
-    InputNumber,
+    InputPhone,
   },
 };
 </script>
