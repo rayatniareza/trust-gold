@@ -21,10 +21,17 @@
         <button
           type="button"
           class="btn btn-primary px-5 mt-3 mb-2"
-          @click.stop="login()">
+          @click.stop="login()"
+          :disabled="wait"
+        >
+          <span
+            class="spinner-border spinner-border-sm"
+            :class="wait ? '' : 'invisible'"
+            role="status"
+            aria-hidden="true"
+          />
           ورود
         </button>
-        <p class="mt-1">کد فعالسازی به شماره شما ارسال خواهد شد</p>
       </div>
     </form>
   </div>
@@ -36,26 +43,34 @@ export default {
   data() {
     return {
       phone: "",
-      valid: ""
+      valid: "",
+      wait: false,
     };
   },
   computed: {},
-  watch:{
-    phone(){
-      this.valid = this.validate( this.phone ) ? "is-valid": "";
-    }
+  watch: {
+    phone() {
+      this.valid = this.validate(this.phone) ? "is-valid" : "";
+    },
   },
   methods: {
     validate(phone) {
       var regex = /^(09)\d{9}/;
       return regex.test(phone);
     },
+    showWait(newValue) {
+      this.wait = newValue;
+    },
     login() {
       // validate phone number, false: show validate message, true:
-      if ( !this.validate(this.phone) ) {
+      if (!this.validate(this.phone)) {
         this.valid = "is-invalid";
+        return;
       }
-      // disable button, show wait, send phone to server
+      // disable button, show wait,
+      this.showWait(true);
+      // send phone to server
+
       // onResponse, dismiss wait, go to next page
       // onFailed, show error
       // "$emit('login', phone )"
